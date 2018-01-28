@@ -12,11 +12,13 @@ import { AboutComponent } from './components/about/about.component';
 
 
 import { LoginComponent } from './components/login/login.component';
+import { RegisterComponent } from './components/register/register.component';
 
 const appRoutes: Routes = [
   { path: 'home', component: HomeComponent },
   { path: 'about', component: AboutComponent },
   { path: 'login', component: LoginComponent },
+  {path: 'register', component: RegisterComponent },
   { path: '', redirectTo: '/home', pathMatch: 'full' },
 ]
 
@@ -26,6 +28,7 @@ const appRoutes: Routes = [
     HomeComponent,
     AboutComponent,
     LoginComponent,
+    RegisterComponent,
   ],
   imports: [
     BrowserModule,

@@ -12,7 +12,7 @@
               </mat-error>
               <mat-error *ngIf="loginForm.get('email').hasError('email')">
                   {{emailErrorMessage[1]}}
-                </mat-error>
+              </mat-error>
             </mat-form-field>
             <mat-form-field>
               <input matInput placeholder="Enter your password" formControlName="password">
@@ -21,8 +21,9 @@
               </mat-error>
             </mat-form-field>      
           </div>
-          <button type="submit" mat-raised-button color="primary" [disabled]="loginForm.invalid">Login</button>
+          <button type="submit" mat-raised-button color="primary">Login</button>
         </form>
+        <button mat-raised-button routerLink="/register">New user? Sign up</button>
   </mat-card-content>
 </mat-card>
 

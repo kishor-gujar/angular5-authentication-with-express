@@ -1,0 +1,41 @@
+<mat-card class="example-card">
+    <mat-card-content>
+      <h1>Register</h1>
+      <p>Get access to your Orders, Wishlist and Recommendations</p>
+
+      <form [formGroup]="registerForm" (ngSubmit)="onSubmit(registerForm)" novalidate>
+        <div class="example-container">
+            <mat-form-field>
+                <input matInput placeholder="Enter your First Name" formControlName="firstname">
+                <mat-error *ngIf="registerForm.get('firstname').hasError('required')">
+                  {{firstNameErrorMessage[0]}}
+                </mat-error>
+                <mat-error *ngIf="registerForm.get('firstname').hasError('minlength')">
+                    {{firstNameErrorMessage[1]}}
+                  </mat-error>
+              </mat-form-field>
+              <mat-form-field>
+              <input matInput placeholder="Enter your email" formControlName="email">
+              <mat-error *ngIf="registerForm.get('email').hasError('required')">
+                {{emailErrorMessage[0]}}
+              </mat-error>
+              <mat-error *ngIf="registerForm.get('email').hasError('email')">
+                  {{emailErrorMessage[1]}}
+                </mat-error>
+            </mat-form-field>
+
+            <mat-form-field>
+              <input matInput placeholder="Enter your password" formControlName="password">
+              <mat-error *ngIf="registerForm.get('password').hasError('required')">
+                  {{passwordErrorMessage[0]}}
+                </mat-error> 
+                <mat-error *ngIf="registerForm.get('password').hasError('minlength')">
+                    {{passwordErrorMessage[1]}}
+                  </mat-error>            
+            </mat-form-field>      
+          </div>
+          <button type="submit" mat-raised-button color="primary">Sign up</button>
+        </form>
+        <button mat-raised-button routerLink="/login">Login</button>
+  </mat-card-content>
+</mat-card>
