@@ -16,11 +16,13 @@ export class AuthIntercepter implements HttpInterceptor{
             // console.log(req);
             return next.handle(req);
         }
+        if(this.localStorageService.GetAuthorizationData()){
+            var authHeader = this.localStorageService.GetAuthorizationData().token;
+            var authReq = req.clone({ setHeaders: { Authorization: authHeader } });
+            // console.log(req);
 
-        var authHeader = this.localStorageService.GetAuthorizationData().token;
-        var authReq = req.clone({ setHeaders: { Authorization: authHeader } });
-        // console.log(req);
-
-        return next.handle(authReq);
+            return next.handle(authReq);
+        }
+        return next.handle(req);
     }
 }
