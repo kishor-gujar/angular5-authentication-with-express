@@ -15,4 +15,8 @@ export class LocalStorageService {
     return tokendata = null ? null:tokendata;
   }
 
+  public removeAuthrizationData(){
+    localStorage.removeItem('Authorization');
+  }
+
 }
