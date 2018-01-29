@@ -17,9 +17,10 @@ export class LoggedAuthGuard implements CanActivate {
 
   checkLogin(url: string):boolean{
     if(this.localStorageService.CheckAuthorizationData()){
+      this.router.navigateByUrl('/home');
       return false;
     } else{
-      this.router.navigateByUrl('/home');
+      return true;
     }
   }
 

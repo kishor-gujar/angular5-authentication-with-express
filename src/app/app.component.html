@@ -2,10 +2,10 @@
   <mat-toolbar-row>
     <span>Programming Place</span>
     <span class="example-spacer"></span>
-    <button mat-button routerLink="/login">
-      <mat-icon>account_circle</mat-icon>
-      Login & Signup
-    </button>
+      <button  *ngIf="!isLoggedin()" mat-button routerLink="/login">
+        <mat-icon>account_circle</mat-icon>
+        Login & Signup
+      </button>
     <button mat-button routerLink="/profile">Profile</button>
     <button mat-button routerLink="/home">Home</button>
     <button mat-button routerLink="/about">About</button>
