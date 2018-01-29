@@ -1,24 +1,34 @@
 import {Component, OnInit} from '@angular/core';
 import {FormBuilder, FormGroup, FormControl, Validators} from '@angular/forms';
+import { TokenParams } from '../../classes/token-params';
+import { AuthService } from '../../services/auth.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.scss']
 })
+
 export class LoginComponent implements OnInit {
   loginForm: FormGroup
   email: FormControl
   emailErrorMessage: Array<string>
   passwordErrorMessage: string
 
-  constructor(private loginFormBuilder: FormBuilder) { 
+  tokenParams: TokenParams
+
+  auth: AuthService;
+
+  constructor(private loginFormBuilder: FormBuilder, private router:Router, authService: AuthService) { 
     this.initializeErrorMessages();
     this.loginForm = loginFormBuilder.group({
       email: new FormControl('', [Validators.required, Validators.email]),
       password: new FormControl('', [Validators.required, Validators.minLength(8)])  
     })
+    this.auth = authService;    
   }
+
   ngOnInit() {
   }
 
@@ -28,6 +38,6 @@ export class LoginComponent implements OnInit {
     this.passwordErrorMessage= "Password is required";
   }
   onSubmit(loginForm){
-    console.log(loginForm.value);
+    this.auth.login(loginForm.value.email, loginForm.value.password);
   }
 }

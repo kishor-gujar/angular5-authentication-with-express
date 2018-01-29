@@ -3,6 +3,8 @@ import {RouterModule, Routes} from '@angular/router';
 import { NgModule } from '@angular/core';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { Http, HttpModule } from '@angular/http';
+import { HttpClientModule } from '@angular/common/http';
 
 import { MaterialModule } from './material/material.module';
 
@@ -13,6 +15,8 @@ import { AboutComponent } from './components/about/about.component';
 
 import { LoginComponent } from './components/login/login.component';
 import { RegisterComponent } from './components/register/register.component';
+
+import { AuthService } from './services/auth.service';
 
 const appRoutes: Routes = [
   { path: 'home', component: HomeComponent },
@@ -34,10 +38,12 @@ const appRoutes: Routes = [
     BrowserModule,
     FormsModule,ReactiveFormsModule,
     BrowserAnimationsModule,
+    HttpModule,
+    HttpClientModule,
     MaterialModule,
     RouterModule.forRoot(appRoutes)
   ],
-  providers: [],
+  providers: [AuthService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
