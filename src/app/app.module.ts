@@ -19,7 +19,8 @@ import { RegisterComponent } from './components/register/register.component';
 import { AuthService } from './services/auth.service';
 import { LocalStorageService } from './services/local-storage.service';
 import { ProfileService } from './services/profile.service';
-import { AuthGuard } from './services/auth-guard';
+import { AuthGuard } from './services/login-auth-guard';
+import { LoggedAuthGuard } from './services/logged-auth-guard';
 
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AuthIntercepter } from './intercepters/auth.intercepter';
@@ -28,8 +29,8 @@ import { ProfileComponent } from './components/profile/profile.component';
 const appRoutes: Routes = [
   { path: 'home', component: HomeComponent },
   { path: 'about', component: AboutComponent },
-  { path: 'login', component: LoginComponent },
-  { path: 'register', component: RegisterComponent },
+  { path: 'login', component: LoginComponent, canActivate: [LoggedAuthGuard] },
+  { path: 'register', component: RegisterComponent, canActivate: [LoggedAuthGuard]  },
   { path: 'profile', component: ProfileComponent, canActivate: [AuthGuard] },
   { path: '', redirectTo: '/home', pathMatch: 'full' },
 ]
@@ -61,7 +62,8 @@ const appRoutes: Routes = [
     AuthService, 
     ProfileService,
     LocalStorageService,
-    AuthGuard
+    AuthGuard,
+    LoggedAuthGuard
   ],
   bootstrap: [AppComponent]
 })
