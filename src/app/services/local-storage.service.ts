@@ -10,6 +10,14 @@ export class LocalStorageService {
     localStorage.setItem('Authorization', JSON.stringify(auth));
   }
 
+  public CheckAuthorizationData(){
+    if(!this.GetAuthorizationData()){
+      return false;
+    } else {
+      return true;
+    }
+  }
+
   public GetAuthorizationData():TokenParams{
     let tokendata = JSON.parse(localStorage.getItem('Authorization'));
     return tokendata = null ? null:tokendata;

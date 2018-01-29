@@ -7,6 +7,7 @@ import { LocalStorageService } from '../services/local-storage.service';
 export class AuthService {
 
   AccessToken: String = "";
+  
   constructor(private http: HttpClient,  private localStorageService: LocalStorageService  ) {
    }
 
