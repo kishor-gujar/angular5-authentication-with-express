@@ -19,6 +19,9 @@ import { RegisterComponent } from './components/register/register.component';
 import { AuthService } from './services/auth.service';
 import { LocalStorageService } from './services/local-storage.service';
 
+import { HTTP_INTERCEPTORS } from '@angular/common/http';
+import { AuthIntercepter } from './intercepters/auth.intercepter';
+
 const appRoutes: Routes = [
   { path: 'home', component: HomeComponent },
   { path: 'about', component: AboutComponent },
@@ -44,7 +47,14 @@ const appRoutes: Routes = [
     MaterialModule,
     RouterModule.forRoot(appRoutes)
   ],
-  providers: [AuthService, LocalStorageService],
+  providers: [
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: AuthIntercepter,
+      multi: true
+    },
+    AuthService, 
+    LocalStorageService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
