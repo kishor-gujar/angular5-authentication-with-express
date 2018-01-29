@@ -1,8 +1,9 @@
 import {Component, OnInit} from '@angular/core';
 import {FormBuilder, FormGroup, FormControl, Validators} from '@angular/forms';
+import { Router } from '@angular/router';
 import { TokenParams } from '../../classes/token-params';
 import { AuthService } from '../../services/auth.service';
-import { Router } from '@angular/router';
+
 
 @Component({
   selector: 'app-login',
@@ -20,7 +21,10 @@ export class LoginComponent implements OnInit {
 
   auth: AuthService;
 
-  constructor(private loginFormBuilder: FormBuilder, private router:Router, authService: AuthService) { 
+  constructor(private loginFormBuilder: FormBuilder, 
+    private router:Router,
+    private authService: AuthService,
+  ) { 
     this.initializeErrorMessages();
     this.loginForm = loginFormBuilder.group({
       email: new FormControl('', [Validators.required, Validators.email]),

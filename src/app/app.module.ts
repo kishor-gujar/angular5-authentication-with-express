@@ -17,6 +17,7 @@ import { LoginComponent } from './components/login/login.component';
 import { RegisterComponent } from './components/register/register.component';
 
 import { AuthService } from './services/auth.service';
+import { LocalStorageService } from './services/local-storage.service';
 
 const appRoutes: Routes = [
   { path: 'home', component: HomeComponent },
@@ -43,7 +44,7 @@ const appRoutes: Routes = [
     MaterialModule,
     RouterModule.forRoot(appRoutes)
   ],
-  providers: [AuthService],
+  providers: [AuthService, LocalStorageService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

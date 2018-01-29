@@ -1,12 +1,14 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http'; 
 import { TokenParams } from '../classes/token-params';
+import { LocalStorageService } from '../services/local-storage.service';
 
 @Injectable()
 export class AuthService {
 
   AccessToken: String = "";
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient,  private localStorageService: LocalStorageService  ) {
+   }
 
   private TokenApi = 'http://localhost:3000/api/authenticate';
  
@@ -17,10 +19,14 @@ export class AuthService {
     }
     return this.http.post<TokenParams>( this.TokenApi, data).subscribe(
         res => {
+            if(res.success == true){
+                this.localStorageService.SetAuthorizationData(res);
+            } 
+           // console.log(this.localStorageService.GetAuthorizationData().token);
             console.log(res);
         }, 
         err => {
-            console.log(err);
+            console.log("err" + err);
         }
     )
 
