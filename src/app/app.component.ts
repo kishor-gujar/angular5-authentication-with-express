@@ -11,7 +11,7 @@ export class AppComponent implements OnInit{
   constructor(private authservice: AuthService){}
 
   ngOnInit() {
-    this.isLoggedin();
+    // this.isLoggedin();
   }
 
   private isLoggedin(): boolean {

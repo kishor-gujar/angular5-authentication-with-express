@@ -19,7 +19,7 @@
               <mat-error *ngIf="registerForm.get('email').hasError('required')">
                 {{emailErrorMessage[0]}}
               </mat-error>
-              <mat-error *ngIf="registerForm.get('email').hasError('email')">
+              <mat-error *ngIf="registerForm.get('email').hasError('email') && !registerForm.get('email').hasError('required')">
                   {{emailErrorMessage[1]}}
                 </mat-error>
             </mat-form-field>

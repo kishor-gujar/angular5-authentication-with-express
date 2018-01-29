@@ -10,7 +10,7 @@
               <mat-error *ngIf="loginForm.get('email').hasError('required')">
                 {{emailErrorMessage[0]}}
               </mat-error>
-              <mat-error *ngIf="loginForm.get('email').hasError('email')">
+              <mat-error *ngIf="loginForm.get('email').hasError('email') && !loginForm.get('email').hasError('required')">
                   {{emailErrorMessage[1]}}
               </mat-error>
             </mat-form-field>
