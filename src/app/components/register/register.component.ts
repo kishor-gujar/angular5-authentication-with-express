@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import {FormBuilder, FormGroup, FormControl, Validators} from '@angular/forms';
+import { FormBuilder, FormGroup, FormControl, Validators } from '@angular/forms';
+import { AuthService } from '../../services/auth.service';
+import { UserRegister } from '../../models/userRegister';
+
 @Component({
   selector: 'app-register',
   templateUrl: './register.component.html',
@@ -11,7 +14,7 @@ export class RegisterComponent implements OnInit {
   emailErrorMessage: Array<string>
   passwordErrorMessage: Array<string>
 
-  constructor(private registerFormBuilder: FormBuilder) { 
+  constructor(private registerFormBuilder: FormBuilder, private authService: AuthService) { 
     this.initializeErrorMessages();
     this.registerForm = registerFormBuilder.group({
       firstname: new FormControl('', [Validators.required, Validators.minLength(2)]),
@@ -30,7 +33,11 @@ export class RegisterComponent implements OnInit {
     this.passwordErrorMessage= ["Password is required", "Password must be 8 charecters"];
   }
   onSubmit(registerForm){
-    console.log(registerForm.value);
+    var user = new UserRegister()
+    user.firstname = registerForm.value.firstname;
+    user.email = registerForm.value.email;
+    user.password = registerForm.value.password;
+    this.authService.register(user);
   }
 
 }

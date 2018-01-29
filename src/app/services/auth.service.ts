@@ -3,6 +3,8 @@ import { HttpClient } from '@angular/common/http';
 import { TokenParams } from '../classes/token-params';
 import { LocalStorageService } from '../services/local-storage.service';
 import { Router } from '@angular/router';
+import { UserRegister } from '../models/userRegister';
+import { UserRegister as UserRegisterclass } from '../classes/user-register';
 
 @Injectable()
 export class AuthService {
@@ -29,9 +31,23 @@ export class AuthService {
             // console.log(res);
         }, 
         err => {
-            console.log("err" + err);
+            console.log(err);
         })
 
+    }
+
+    register(userRegister){
+        return this.http.post<UserRegisterclass>('http://localhost:3000/api/register', userRegister).subscribe(
+            res => {
+                if(res.success == true){
+                    this.router.navigateByUrl('/login');
+                }
+                console.log(res);
+            },
+            err => {
+                console.log(err);
+            }
+        )
     }
 
     isLoggedIn(): boolean{
