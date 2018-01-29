@@ -18,15 +18,18 @@ import { RegisterComponent } from './components/register/register.component';
 
 import { AuthService } from './services/auth.service';
 import { LocalStorageService } from './services/local-storage.service';
+import { ProfileService } from './services/profile.service';
 
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AuthIntercepter } from './intercepters/auth.intercepter';
+import { ProfileComponent } from './components/profile/profile.component';
 
 const appRoutes: Routes = [
   { path: 'home', component: HomeComponent },
   { path: 'about', component: AboutComponent },
   { path: 'login', component: LoginComponent },
-  {path: 'register', component: RegisterComponent },
+  { path: 'register', component: RegisterComponent },
+  { path: 'profile', component: ProfileComponent },
   { path: '', redirectTo: '/home', pathMatch: 'full' },
 ]
 
@@ -37,6 +40,7 @@ const appRoutes: Routes = [
     AboutComponent,
     LoginComponent,
     RegisterComponent,
+    ProfileComponent,
   ],
   imports: [
     BrowserModule,
@@ -54,6 +58,7 @@ const appRoutes: Routes = [
       multi: true
     },
     AuthService, 
+    ProfileService,
     LocalStorageService],
   bootstrap: [AppComponent]
 })

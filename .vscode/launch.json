@@ -12,7 +12,7 @@
             "trace": true,
             "runtimeArgs": [
                 "--new-window",
-                "--user-data-dir=/home/king/projects/",
+                "--user-data-dir=/home/king/projects/tmp",
                 "--remote-debugging-port=9222"
             ],
             "runtimeExecutable": "/usr/bin/google-chrome-stable"
