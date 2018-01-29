@@ -34,27 +34,6 @@ export class AuthService {
 
     }
 
-    register(){
-        var data = {
-            // email : email, 
-            // password: password
-        }
-        return this.http.post<TokenParams>( this.TokenApi, data).subscribe(
-            res => {
-                if(res.success == true){
-                    this.localStorageService.SetAuthorizationData(res);
-                    this.router.navigateByUrl('/login');
-                } 
-               // console.log(this.localStorageService.GetAuthorizationData().token);
-                // console.log(res);
-            }, 
-            err => {
-                console.log("err" + err);
-            })
-    
-        }
-    }
-
     isLoggedIn(): boolean{
         if(this.localStorageService.CheckAuthorizationData()){
             return true;
