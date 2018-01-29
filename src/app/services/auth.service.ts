@@ -23,17 +23,18 @@ export class AuthService {
                 this.localStorageService.SetAuthorizationData(res);
             } 
            // console.log(this.localStorageService.GetAuthorizationData().token);
-            console.log(res);
+            // console.log(res);
         }, 
         err => {
             console.log("err" + err);
         }
     )
 
-}
+    }
 
-logout() {
-    // remove user from local storage to log user out
-    localStorage.removeItem('currentUser');
-}
+    logout() {
+        // remove user from local storage to log user out
+        this.localStorageService.removeAuthrizationData();
+        
+    }
 }
