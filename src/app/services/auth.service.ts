@@ -5,13 +5,18 @@ import { LocalStorageService } from '../services/local-storage.service';
 import { Router } from '@angular/router';
 import { UserRegister } from '../models/userRegister';
 import { UserRegister as UserRegisterclass } from '../classes/user-register';
+import { MatSnackBar } from '@angular/material';
 
 @Injectable()
 export class AuthService {
 
   AccessToken: String = "";
   
-  constructor(private router: Router, private http: HttpClient,  private localStorageService: LocalStorageService  ) {
+  constructor(
+      private router: Router, 
+      private http: HttpClient,  
+      private localStorageService: LocalStorageService,
+      public snackBar: MatSnackBar) {
    }
 
   private TokenApi = 'http://localhost:3000/api/authenticate';
@@ -26,6 +31,9 @@ export class AuthService {
             if(res.success == true){
                 this.localStorageService.SetAuthorizationData(res);
                 this.router.navigateByUrl('/home');
+                this.snackBar.open("You are logged in.", "Got it", {
+                    duration: 500,
+                  });
             } 
            // console.log(this.localStorageService.GetAuthorizationData().token);
             // console.log(res);
