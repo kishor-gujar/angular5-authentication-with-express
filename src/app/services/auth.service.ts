@@ -49,6 +49,9 @@ export class AuthService {
             res => {
                 if(res.success == true){
                     this.router.navigateByUrl('/login');
+                    this.snackBar.open("You are Registered please log in.", "Got it", {
+                        duration: 500,
+                      });
                 }
                 console.log(res);
             },
