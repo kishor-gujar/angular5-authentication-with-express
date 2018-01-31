@@ -1,27 +1,21 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { TokenParams } from '../classes/token-params';
 import { Profile } from '../classes/profile';
+import { Observable } from 'rxjs/Observable';
+import 'rxjs/add/operator/catch';
+import { HttpErrorResponse } from '@angular/common/http/src/response';
 
 @Injectable()
 export class ProfileService {
-  constructor(private http: HttpClient ) {
-   }
+    profile: Profile;
+  constructor(private http: HttpClient ) {}
 
-  private TokenApi = 'http://localhost:3000/api/dashboard';
+  private TokenApi = 'http://localhost:3000/api/profile';
  
-  get() {
-    return this.http.get<Profile>( this.TokenApi).subscribe(
-        res => {
-          
-           // console.log(this.localStorageService.GetAuthorizationData().token);
-            console.log(res);
-        },
-        err => {
-            // console.log(err);
-        }
-    )
-
+  get(): Observable<Profile>{
+        return this.http.get<Profile>( this.TokenApi).catch(this.errorHandler);
     }
-
+    errorHandler(error: HttpErrorResponse){
+        return Observable.throw(error.message || "Server Error");
+    }
 }
