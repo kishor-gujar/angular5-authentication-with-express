@@ -21,7 +21,7 @@ export class AuthService {
 
   private TokenApi = 'http://localhost:3000/api/authenticate';
  
-  login(email: string, password: string) {
+  login(email: string, password: string, redirect?: string) {
     var data = {
         email : email, 
         password: password
@@ -30,13 +30,16 @@ export class AuthService {
         res => {
             if(res.success == true){
                 this.localStorageService.SetAuthorizationData(res);
-                this.router.navigateByUrl('/home');
+                if(!redirect){
+                    this.router.navigateByUrl('/home')
+                }else{
+                    this.router.navigateByUrl(redirect);
+                }
                 this.snackBar.open("You are logged in.", "Got it", {
                     duration: 500,
                   });
-            } 
-           // console.log(this.localStorageService.GetAuthorizationData().token);
-            // console.log(res);
+            } else
+            console.log(res);
         }, 
         err => {
             console.log(err);
