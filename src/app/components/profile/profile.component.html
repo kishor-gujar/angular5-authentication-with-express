@@ -1,2 +1,53 @@
-<h1 *ngIf="profile">{{profile.firstname}}</h1>
-<h1 *ngIf="profile">{{profile.email}}</h1>
+<mat-card class="row2">
+        <router-outlet><h2>Personal Information</h2></router-outlet>
+</mat-card>
+
+<mat-card class="row1">
+    <mat-card-content>
+    <mat-icon  class="hello">person</mat-icon>
+    <div>
+        <span>Hello, </span> 
+        <h2 *ngIf="profile">{{profile.firstname}}</h2>
+    </div>
+    </mat-card-content>
+</mat-card>
+<mat-card class="row1">
+        <mat-card-header>
+                <mat-card-title>
+                                <h2><mat-icon>person</mat-icon>
+                        Account Settings</h2>
+                </mat-card-title>
+
+        </mat-card-header>
+        <mat-card-content>
+                <mat-nav-list>
+                        <mat-list-item>
+                           <a matLine routerLink="/account">Profile informaion</a>
+                           <button mat-icon-button>
+                              <mat-icon>info</mat-icon>
+                           </button>
+                        </mat-list-item>
+                        <mat-list-item>
+                           <a matLine routerLink="addresses">Manage Addresses</a>
+                           <button mat-icon-button>
+                              <mat-icon>place</mat-icon>
+                           </button>
+                        </mat-list-item>
+                        <mat-list-item>
+                           <a matLine routerLink="subscription">Notification Preferences</a>
+                           <button mat-icon-button>
+                              <mat-icon>notifications</mat-icon>
+                           </button>
+                        </mat-list-item>
+
+                        <mat-divider>   </mat-divider>
+                        <mat-list-item>
+                                <a matLine>Logout</a>
+                                <button mat-icon-button>
+                                        <mat-icon>exit_to_app</mat-icon>
+                                </button>
+                                </mat-list-item>
+                      </mat-nav-list>
+              </mat-card-content>
+</mat-card>
+

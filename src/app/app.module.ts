@@ -25,13 +25,22 @@ import { LoggedAuthGuard } from './services/logged-auth-guard';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AuthIntercepter } from './intercepters/auth.intercepter';
 import { ProfileComponent } from './components/profile/profile.component';
+import { AddressesComponent } from './components/addresses/addresses.component';
+import { SubscriptionsComponent } from './components/subscriptions/subscriptions.component';
+import { AccountComponent } from './components/account/account.component';
 
 const appRoutes: Routes = [
   { path: 'home', component: HomeComponent },
   { path: 'about', component: AboutComponent },
   { path: 'login', component: LoginComponent, canActivate: [LoggedAuthGuard] },
   { path: 'register', component: RegisterComponent, canActivate: [LoggedAuthGuard]  },
-  { path: 'profile', component: ProfileComponent, canActivate: [AuthGuard] },
+  { path: 'account', component: AccountComponent, canActivate: [AuthGuard],
+    children: [
+      { path: '', component: ProfileComponent },
+      { path: 'addresses', component: AddressesComponent },
+      { path: 'subscription', component: SubscriptionsComponent },
+    ]
+  },
   { path: '', redirectTo: '/home', pathMatch: 'full' },
 ]
 
@@ -43,6 +52,9 @@ const appRoutes: Routes = [
     LoginComponent,
     RegisterComponent,
     ProfileComponent,
+    AddressesComponent,
+    SubscriptionsComponent,
+    AccountComponent,
   ],
   imports: [
     BrowserModule,
