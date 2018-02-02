@@ -7,15 +7,10 @@ import { Profile } from '../../classes/profile';
   styleUrls: ['./profile.component.scss']
 })
 export class ProfileComponent implements OnInit {
-  public profile: Profile;
-  public errorMsg: string;
 
   constructor(private profileService: ProfileService) { }
 
   ngOnInit() {
-    this.profileService.get().subscribe(
-      data => this.profile = data,
-      error => this.errorMsg = error
-    );
+  
   }
 }
